@@ -20,4 +20,3 @@ open browser to login page
         sleep   3s
         Click_On_Element    ${LoginPage_loginbutton}
         Verify_Element      ${LoginPage_email_confirm}    Please enter a valid email address (Ex: johndoe@domain.com).
-    END
