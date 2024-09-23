@@ -2,10 +2,9 @@
 Resource   ../settings/luma.robot
 
 *** Variables ***
-${CSV_FILE}    ${CURDIR}/../data/login_data.csv
+${CSV_FILE}    ${CURDIR}/../../data/login_data.csv
 
 *** Keywords ***
-
 OpenLumaBrowser
     LaunchBrowser
     Go To   ${LUMA_URL}
