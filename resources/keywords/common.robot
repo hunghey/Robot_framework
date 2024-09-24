@@ -4,7 +4,7 @@ Library    DateTime
 Resource    ../settings/luma.robot
 
 *** Variables ***
-${wait}     5s
+${wait}     2s
 ${BROWSER}  Chrome
 
 *** Keywords ***
@@ -17,13 +17,13 @@ Browser_Setting_Common
     END
     Call method     ${options}   add_argument    --lang\=en
     Call method     ${options}   add_argument    --no-sandbox
-    [RETURN]    ${options}
+    RETURN    ${options}
 
 Browser_Setting_Headless
     [Documentation]     Init common options
     [Arguments]    ${options}
     Call method     ${options}   add_argument    --headless
-    [RETURN]    ${options}
+    RETURN    ${options}
 
 CreateDriver
     [Documentation]    CreateDriver
@@ -34,11 +34,17 @@ CreateDriver
     ELSE
         PASS
     END
-    [RETURN]    ${alias}
+    RETURN    ${alias}
 
 LaunchBrowser
     [Documentation]    launch browser
     ${option}   Browser_Setting_Common
+    ${alias}    CreateDriver    ${option}
+
+LaunchBrowser_Headless
+    [Documentation]    launch browser
+    ${option}   Browser_Setting_Common
+    ${option}   Browser_Setting_Headless    ${option}
     ${alias}    CreateDriver    ${option}
 
 open_browser_to_login_page
@@ -73,7 +79,7 @@ Get_Text_On_Element
     Verify_Element_Displayed    ${locator}
     ${text_displayed}   get text    ${locator}
     capture page screenshot
-    [Return]    ${text_displayed}
+    RETURN    ${text_displayed}
 
 Compare_Text_On_Element
     [Documentation]    Verify text on elemnet

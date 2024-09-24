@@ -1,13 +1,11 @@
 *** Settings ***
 Documentation    This is the first test for ORM
-Resource    ../resources/settings/luma.robot
-Library    ../resources/keywords//login_data.py
-Library    OperatingSystem
+Resource    ../resources/settings/orangehrm.robot
 
-*** Variables ***
 
 *** Test Cases ***
-open browser to login page
-    open browser    https://www.tutorialspoint.com/selenium/practice/selenium_automation_practice.php   chrome
-    select radio button    Gender   M
-    sleep   3
+open browser and login
+    OpenOrangeHrmBrowser
+    LoginOrangeHrm
+
+
