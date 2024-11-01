@@ -1,6 +1,8 @@
 *** Settings ***
-Documentation    This is the first test for ORM
-Resource    ../resources/settings/luma.robot
+Documentation       This is the first test for ORM
+
+Resource            ../resources/settings/luma.robot
+
 
 *** Test Cases ***
 open browser and login
@@ -8,4 +10,3 @@ open browser and login
     Click_On_Element    ${Hompage_signin_header}
     HomepageCheckLogo
     LoginLuma
-
