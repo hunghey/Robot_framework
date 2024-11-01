@@ -19,6 +19,7 @@ Browser_Setting_Common
     END
     Call method    ${options}    add_argument    --lang\=en
     Call method    ${options}    add_argument    --no-sandbox
+    Call method    ${options}    add_argument    --disable-gpu
     RETURN    ${options}
 
 Browser_Setting_Headless
@@ -38,16 +39,27 @@ CreateDriver
     END
     RETURN    ${alias}
 
-Open Chrome With Options
+Change_dowload_dir
     [Arguments]    ${download_dir}=${DOWNLOAD_DIR}
-    ${chrome options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-    ${prefs}=    Create Dictionary
+    ${chrome options}    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    ${prefs}    Create Dictionary
     ...    download.default_directory=${download_dir}
     ...    download.prompt_for_download=False
     ...    directory_upgrade=True
     ...    safebrowsing.enabled=True
     Call Method    ${chrome options}    add_experimental_option    prefs    ${prefs}
     Create Webdriver    Chrome    options=${chrome options}
+
+CreateDriver_pageLoadStrategy
+    [Documentation]    Create Chrome driver with pageLoadStrategy
+#    Control the speed at which webdriver performs interactions
+    [Arguments]    ${option}
+    ${options}    Evaluate
+    ...    sys.modules['selenium.webdriver'].ChromeOptions()
+    ${options.page_load_strategy}    Set Variable    ${option}
+    ${alias}    Get current date    result_format=%m%d%H%M%S
+    Create Webdriver    Chrome    ${alias}    options=${options}
+    RETURN    ${alias}
 
 LaunchBrowser
     [Documentation]    launch browser

@@ -1,6 +1,8 @@
 *** Settings ***
 Resource    ../locators/curalheathcare.robot
 Library     SeleniumLibrary
+
+
 *** Keywords ***
 GetTextOnElement    [Arguments]    ${locator}
     wait until element is visible    ${locator}    2s
@@ -12,6 +14,7 @@ VerifyText    [Arguments]    ${locator}    ${expected_text}
     Should Be Equal    ${displayed_title}    ${expected_text}
 
 # Hompage
+
 Homepage_check_title
     [Arguments]    ${expected_title}
     VerifyText    ${Hompage_title}    ${expected_title}
@@ -20,12 +23,14 @@ Homepage_click_makeappointment
     click element    ${Hompage_Appointment_btn}
 
 # LoginPage
+
 LoginPage    [Arguments]    ${username}    ${password}
     input text    ${Loginpage_username_input}    ${username}
     input text    ${Loginpage_password_input}    ${password}
     click element    ${Loginpage_login_btn}
 
 # Appointment page
+
 Appointmentpage_choose_facility
     click element    ${Appointmentpage_facility_select}
     wait until element is visible    ${Appointmentpage_hongKong_option}    2s
@@ -50,6 +55,7 @@ Appointmentpage_click_book_appointment
     click element    ${Appointmentpage_appointmentBook_btn}
 
 # Confirmation page
+
 Confirmationgage_verify_title
     [Arguments]    ${expected_title}
     VerifyText    ${Confirmationgage_confirm_title}    ${expected_title}
