@@ -115,10 +115,6 @@ Get_Text_On_Element
     ${text_displayed}    get text    ${locator}
     capture page screenshot
     RETURN    ${text_displayed}
-# GetTextOnElement
-#    [Arguments]    ${locator}
-#    ${text}=    get text    ${locator}
-#    RETURN    ${text}
 
 Compare_Text_On_Element
     [Documentation]    Verify text on elemnet
