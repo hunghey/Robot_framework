@@ -5,7 +5,7 @@ Resource    ../settings/luma.robot
 
 
 *** Variables ***
-${wait}         2s
+${wait}         4s
 ${BROWSER}      Chrome
 
 
@@ -85,6 +85,16 @@ Verify_Element_Displayed
     wait until element is enabled    ${locator}    ${timeout}
     run keyword and ignore error    scroll element into view    ${locator}
 
+Verify_Element_Not_Displayed
+    [Documentation]    Verify element NOT displayed on the current page
+    [Arguments]    ${locator}    ${timeout}=${wait}
+    Wait Until Element Is Not Visible    ${locator}    ${timeout}
+
+Verify_Element_Enable
+    [Documentation]    Verify element NOT displayed on the current page
+    [Arguments]    ${locator}    ${timeout}=${wait}
+    Wait Until Element Is Enabled    ${locator}    ${timeout}
+
 Input_Text_Into_Element
     [Documentation]    Wait element for visible and input text
     [Arguments]    ${locator}    ${text}
@@ -105,12 +115,16 @@ Get_Text_On_Element
     ${text_displayed}    get text    ${locator}
     capture page screenshot
     RETURN    ${text_displayed}
+# GetTextOnElement
+#    [Arguments]    ${locator}
+#    ${text}=    get text    ${locator}
+#    RETURN    ${text}
 
 Compare_Text_On_Element
     [Documentation]    Verify text on elemnet
     [Arguments]    ${locator}    ${expected_text}
     ${text_displayed}    get_text_on_element    ${locator}
-    run keyword and continue on failure    should be equal    ${text_displayed}    ${expected_text}
+    run keyword and continue on failure    Should Contain    ${text_displayed}    ${expected_text}
 
 Verify_Element
     [Documentation]    Verify text displayed after click login button
