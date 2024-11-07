@@ -3,6 +3,7 @@ pipeline {
 
     stages {
         stage('Build') { 
+            agent { label 'built-in' }
             steps { 
                 echo 'make' 
             }
@@ -14,6 +15,7 @@ pipeline {
             }
         }
         stage('Deploy') {
+            agent { label 'win' }
             steps {
                 echo 'make publish'
             }
