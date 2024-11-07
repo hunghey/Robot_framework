@@ -15,7 +15,6 @@ pipeline {
             }
         }
         stage('Deploy') {
-            agent { label 'win' }
             steps {
                 echo 'make publish'
             }
